@@ -1,0 +1,13 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: iltpwc-cert
+  namespace: dns-tls
+spec:
+  commonName: '*.<YOUR_DOMAIN>.com'
+  secretName: letsencrypt-prod
+  dnsNames:
+    - '*.<YOUR_DOMAIN>.com'
+  issuerRef:
+    name: le-clusterissuer
+    kind: ClusterIssuer

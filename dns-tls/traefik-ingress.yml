@@ -1,0 +1,22 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: traefik-dashboard
+  namespace: dns-tls
+  annotations:
+    kubernetes.io/ingress.class: traefik-external
+    cert-manager.io/cluster-issuer: le-clusterissuer
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`traefik.<ADD_YOUR_CREDENTIALS_HERE>.com`)
+      kind: Rule
+      middlewares:
+        - name: traefik-dashboard-basicauth
+          namespace: dns-tls
+      services:
+        - name: api@internal
+          kind: TraefikService
+  tls:
+    secretName: letsencrypt-prod

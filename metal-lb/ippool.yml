@@ -1,0 +1,9 @@
+apiVersion: metallb.io/v1beta1
+kind: IPAddressPool
+metadata:
+  name: iltpwc_net
+  namespace: metallb-system
+spec:
+  addresses:
+  - 192.168.22.50-192.168.22.99
+  # <REPLACE_LINE_WITH_YOUR_IP_RANGE_HERE> 
